@@ -84,10 +84,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       const fd = new FormData(form);
-      await fetch(form.action, { method: 'POST', body: new URLSearchParams(fd) });
-      btn.innerHTML = '<span>Thanks! I\'ll Be in Touch Soon</span><i class="fas fa-check"></i>';
-      btn.style.background = '#0ea776';
-      form.reset();
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new URLSearchParams(fd),
+        headers: { 'Accept': 'application/json' }
+      });
+      const data = await res.json();
+      if (data.ok) {
+        btn.innerHTML = '<span>Thanks! I\'ll Be in Touch Soon</span><i class="fas fa-check"></i>';
+        btn.style.background = '#0ea776';
+        form.reset();
+      } else {
+        throw new Error(data.error || 'Form submission failed');
+      }
     } catch {
       btn.innerHTML = '<span>Something went wrong. Email me directly at atticus.a@zohomail.com</span><i class="fas fa-envelope"></i>';
       btn.style.background = '#dc2626';
@@ -97,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.innerHTML = original;
       btn.style.background = '';
       btn.disabled = false;
-    }, 4000);
+    }, 5000);
   });
 
 });
