@@ -149,14 +149,13 @@
         <div class="contact-details">
           <div><i class="fas fa-map-marker-alt"></i><span>Serving Burlington, CT &amp; Surrounding Towns</span></div>
           <div><i class="fas fa-envelope"></i><span>atticus.a@zohomail.com</span></div>
-          <div><i class="fas fa-phone"></i><span>(860) 555-0147</span></div>
         </div>
         <div class="contact-social">
           <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         </div>
       </div>
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm" action="/send-email" method="POST">
         <h3>Book a Shoot — $100</h3>
         <div class="form-row">
           <div class="form-group">
@@ -164,19 +163,15 @@
             <input type="text" id="name" name="name" required placeholder="Your name" />
           </div>
           <div class="form-group">
-            <label for="email">Email Address</label>
+            <label for="email">Your Email</label>
             <input type="email" id="email" name="email" required placeholder="email@example.com" />
           </div>
-        </div>
-        <div class="form-group">
-          <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" placeholder="(860) 555-0123" />
         </div>
         <div class="form-group">
           <label for="message">Property Location &amp; Details</label>
           <textarea id="message" name="message" rows="4" required placeholder="Tell me about the property and where it's located (town, address)..."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary btn-full btn-large"><span>Book Now $100</span><i class="fas fa-paper-plane"></i></button>
+        <button type="submit" class="btn btn-primary btn-full btn-large"><span>Book Now — $100</span><i class="fas fa-paper-plane"></i></button>
         <p class="form-note"><i class="fas fa-lock"></i> Your information is kept confidential.</p>
       </form>
     </div>
@@ -216,7 +211,6 @@
         <h4>Contact</h4>
         <ul class="footer-contact">
           <li><i class="fas fa-envelope"></i> atticus.a@zohomail.com</li>
-          <li><i class="fas fa-phone"></i> (860) 555-0147</li>
           <li><i class="fas fa-map-marker-alt"></i> Burlington, CT</li>
         </ul>
       </div>

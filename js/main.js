@@ -75,20 +75,29 @@ document.addEventListener('DOMContentLoaded', () => {
   revealElements();
 
   const form = document.getElementById('contactForm');
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
     const original = btn.innerHTML;
-    btn.innerHTML = '<span>Thanks! I\'ll Be in Touch Soon</span><i class="fas fa-check"></i>';
-    btn.style.background = '#0ea776';
+    btn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-pulse"></i>';
     btn.disabled = true;
+
+    try {
+      const fd = new FormData(form);
+      await fetch(form.action, { method: 'POST', body: new URLSearchParams(fd) });
+      btn.innerHTML = '<span>Thanks! I\'ll Be in Touch Soon</span><i class="fas fa-check"></i>';
+      btn.style.background = '#0ea776';
+      form.reset();
+    } catch {
+      btn.innerHTML = '<span>Something went wrong. Email me directly at atticus.a@zohomail.com</span><i class="fas fa-envelope"></i>';
+      btn.style.background = '#dc2626';
+    }
 
     setTimeout(() => {
       btn.innerHTML = original;
       btn.style.background = '';
       btn.disabled = false;
-      form.reset();
-    }, 3000);
+    }, 4000);
   });
 
 });
